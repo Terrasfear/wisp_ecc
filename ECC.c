@@ -15,6 +15,39 @@ int ipow(int base, int exp)                     /*source: http://stackoverflow.c
     return result;
 }
 
+int on_curve(int p[2], int param[5])
+{
+    if (mod(ipow(p[1], 2), param[4]) == mod(param[0]*ipow(p[0], 3) + param[1]*ipow(p[0], 2) + param[2]*p[0] + param[3], param[4])) return 1;
+    else return 0;
+}
+
+int mod (int a, int p)
+{
+   int ret = a % p;
+   if(ret < 0)
+     ret+=p;
+   return ret;
+}
+
+void print_all_points(int par[5])
+{
+    int i, j;
+    int p[2];
+    for(i = 0; i < par[4]; i++)
+    {
+        p[0] = i;
+        for(j = 0; j < par[4]; j++)
+        {
+            p[1] = j;
+            if (on_curve(p, par) == 1)
+            {
+                printf("(%d, %d), ", p[0], p[1]);
+            }
+        }
+        printf("\n");
+    }
+}
+
 int* ECC_addition(int P1[], int P2[], int param[])
 {
     int m;
