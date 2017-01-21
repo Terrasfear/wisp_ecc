@@ -117,7 +117,7 @@ int* generate_key (int private_key, int start[2], int param[5])
     if (param[3] >= param[4])
         param[3] %= param[4];
 
-    while(private_key >= 0)
+    while(private_key > 0)
     {
         if (P1[2] == 1)                         /*case one*/
         {
