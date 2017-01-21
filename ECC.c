@@ -167,6 +167,10 @@ int main(void)
     /*int a, b, c, d, p;      /* y^2 = a x^3 + b x^2 + c x + d*/
                             /* p staat voor priem getal*/
     int param[5] = {1, 0, -3, 9, 13};
+    
+    //int param[5] = {1, 0, 2, 9, 37};              /*parameters van https://arxiv.org/ftp/arxiv/papers/1202/1202.1895.pdf*/
+    //print_all_points(param);
+    
     int *Q;
 
     Q = generate_key(private_key, start, param);
