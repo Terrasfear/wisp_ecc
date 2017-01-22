@@ -103,11 +103,11 @@ int* generate_key (int private_key, int start[2], int param[5])
 
 int main(void)
 {
-    int start[2]={200, 39};
+    int start[2]={1,5};
     int private_key=2;
     /*int a, b, c, d, p;      /* y^2 = a x^3 + b x^2 + c x + d*/
                             /* p staat voor priem getal*/
-    int param[5] = {1, 0, 2, 3, 263};
+    int param[5] = {1, 0, 1, 5, 7};
     int *Q;
 
     Q = generate_key(private_key, start, param);
