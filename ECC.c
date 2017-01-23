@@ -50,7 +50,7 @@ int* ECC_addition(int P1[], int P2[], int param[])
     int m;
     static int q[2];
 
-    if(P1[0] == P2[0] && P1[1] == P2[1])
+    if (*P1 == *P2)
     {
         printf("3A\n");
         m = (3 * param[0] * ipow(P1[0], 2) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2) * ipow(P1[1], (param[4]-2));
@@ -76,8 +76,8 @@ int* generate_key (int private_key, int start[2], int param[5])
 {
     static int P1[3], P2[3], P3[3];
     int* q;
-
-    P1[0] = P2[0] = P3[0] = MOD(start[0], param[4]);    /*beginpunt inladen*/
+                                                    /*beginpunt inladen*/
+    P1[0] = P2[0] = P3[0] = MOD(start[0], param[4]);
     P1[1] = P2[1] = P3[1] = MOD(start[1], param[4]);
     P1[2] = P2[2] = P3[2] = 0;
 
