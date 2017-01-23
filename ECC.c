@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 #define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
@@ -50,18 +49,15 @@ int* ECC_addition(int P1[], int P2[], int param[])
     int m;
     static int q[2];
 
-    if (*P1 == *P2)
+    if(*P1 == *P2)
     {
-        printf("3A\n");
         m = (3 * param[0] * ipow(P1[0], 2) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2) * ipow(P1[1], (param[4]-2));
     }
     else
     {
-        printf("3B\n");
         m = (P2[1] -P1[1]) *ipow((P2[0]-P1[0]),(param[4]-2));
     }
     m  = MOD(m, param[4]);
-    printf("m= %d\n", m);
 
     q[0] = - P1[0] - P2[0] - param[1] * ipow(param[0], (param[4]-2)) + ipow(m,2) * ipow(param[0], (param[4]-2));
     q[0]  = MOD(q[0], param[4]);
@@ -76,8 +72,8 @@ int* generate_key (int private_key, int start[2], int param[5])
 {
     static int P1[3], P2[3], P3[3];
     int* q;
-                                                    /*beginpunt inladen*/
-    P1[0] = P2[0] = P3[0] = MOD(start[0], param[4]);
+
+    P1[0] = P2[0] = P3[0] = MOD(start[0], param[4]);    /*beginpunt inladen*/
     P1[1] = P2[1] = P3[1] = MOD(start[1], param[4]);
     P1[2] = P2[2] = P3[2] = 0;
 
@@ -90,6 +86,8 @@ int* generate_key (int private_key, int start[2], int param[5])
     printf("(%d, %d, %d)\n", P1[0], P1[1], P1[2]);
     while(private_key > 1)
     {
+        printf("Adding P1(%d, %d) and P2(%d, %d): ", P1[0], P1[1], P2[0], P2[1]);
+
         if (P1[2] == 1)                         /*case one*/
         {
             printf("case one\n");
@@ -107,7 +105,7 @@ int* generate_key (int private_key, int start[2], int param[5])
         else if (P1[0] == P2[0] && (P1[1] != P2[1] || (P1[1] == 0 && P2[1] == 0))) /*case two*/
         {
             printf("case two\n");
-            printf("%d = %d, &( %d != %d || (%d = 0 & %d = 0))\n", P1[0], P2[0], P1[1], P2[1], P1[1], P2[1]);
+            //printf("%d = %d, &( %d != %d || (%d = 0 & %d = 0))\n", P1[0], P2[0], P1[1], P2[1], P1[1], P2[1]);
             P3[0]=0;
             P3[1]=0;
             P3[2]=1;
@@ -139,9 +137,11 @@ int main(void)
     int param[5] = {1, 0, 2, 2, 11};
     int *Q;
 
+    print_all_points(param);
+
     Q = generate_key(private_key, start, param);
 
-    printf("(%d, %d)", *Q, *(Q+1));
+    printf("Public Key: (%d, %d)", *Q, *(Q+1));
 
     return 0;
 }
