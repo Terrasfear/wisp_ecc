@@ -23,13 +23,10 @@ int gcdExtended(int a, int b, int *x, int *y)   /*source: http://www.geeksforgee
         *x = 0, *y = 1;
         return b;
     }
-
     int x1, y1;
     int gcd = gcdExtended(b%a, a, &x1, &y1);
-
     *x = y1 - (b/a) * x1;
     *y = x1;
-
     return gcd;
 }
 
@@ -114,28 +111,28 @@ int* generate_key (int private_key, int start[2], int param[5])
     param[2] = MOD(param[2], param[4]);
     param[3] = MOD(param[3], param[4]);
 
-    printf("(%d, %d, %d)\n", P1[0], P1[1], P1[2]);
+    //printf("(%d, %d, %d)\n", P1[0], P1[1], P1[2]);
     while(private_key > 1)
     {
         printf("Adding P1(%d, %d) and P2(%d, %d): ", P1[0], P1[1], P2[0], P2[1]);
 
         if (P1[2] == 1)                         /*case one*/
         {
-            printf("case one\n");
+            //printf("case one\n");
             P3[0] = P2[0];
             P3[1] = P2[1];
             P3[2] = P2[2];
         }
         else if(P2[2] == 1)
         {
-            printf("case one\n");
+            //printf("case one\n");
             P3[0] = P1[0];
             P3[1] = P1[1];
             P3[2] = P1[2];
         }
         else if (P1[0] == P2[0] && (P1[1] != P2[1] || (P1[1] == 0 && P2[1] == 0))) /*case two*/
         {
-            printf("case two\n");
+            //printf("case two\n");
             //printf("%d = %d, &( %d != %d || (%d = 0 & %d = 0))\n", P1[0], P2[0], P1[1], P2[1], P1[1], P2[1]);
             P3[0]=0;
             P3[1]=0;
@@ -143,12 +140,14 @@ int* generate_key (int private_key, int start[2], int param[5])
         }
         else                                    /* case three*/
         {
-            printf("case three\n");
+            //printf("case three\n");
             q = ECC_addition(P1, P2, param);
             P3[0] = *q;
             P3[1] = *(q+1);
         }
-        printf("(%d, %d, %d)\n", P3[0], P3[1], P3[2]);
+        if(on_curve(P3, param)!=1) printf("Computed point not on curve!\n");
+        else printf("(%d, %d, %d)\n", P3[0], P3[1], P3[2]);
+
         P2[0] = P3[0];
         P2[1] = P3[1];
         P2[2] = P3[2];
@@ -169,6 +168,8 @@ int main(void)
     int *Q;
 
     print_all_points(param);
+
+    if(on_curve(start, param)!=1) printf("Start point not on curve!\n"); else printf("Start: (%d, %d)\n", start[0], start[1]);
 
     Q = generate_key(private_key, start, param);
 
