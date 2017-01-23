@@ -20,7 +20,7 @@ int ipow(int base, int exp)                     /*source: http://stackoverflow.c
 
 int on_curve(int p[2], int param[5])
 {
-    if (mod(ipow(p[1], 2), param[4]) == mod(param[0]*ipow(p[0], 3) + param[1]*ipow(p[0], 2) + param[2]*p[0] + param[3], param[4])) return 1;
+    if (MOD(ipow(p[1], 2), param[4]) == mod(param[0]*ipow(p[0], 3) + param[1]*ipow(p[0], 2) + param[2]*p[0] + param[3], param[4])) return 1;
     else return 0;
 }
 
