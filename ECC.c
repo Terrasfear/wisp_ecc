@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
 
 
@@ -15,6 +14,38 @@ int ipow(int base, int exp)                     /*source: http://stackoverflow.c
     }
 
     return result;
+}
+
+int gcdExtended(int a, int b, int *x, int *y)   /*source: http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
+{
+    if (a == 0)
+    {
+        *x = 0, *y = 1;
+        return b;
+    }
+
+    int x1, y1;
+    int gcd = gcdExtended(b%a, a, &x1, &y1);
+
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+
+    return gcd;
+}
+
+int ModInv(int a, int m)                            /*source (edited): http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
+{
+    int x, y;
+    int g = gcdExtended(MOD(a, m), m, &x, &y);
+    if (g != 1)
+    {
+        printf("Inverse of %d doesn't exist\n", a);
+        return 0;
+    }
+    else
+    {
+        return MOD(x, m);
+    }
 }
 
 int on_curve(int p[2], int param[5])
@@ -51,15 +82,15 @@ int* ECC_addition(int P1[], int P2[], int param[])
 
     if(*P1 == *P2)
     {
-        m = (3 * param[0] * ipow(P1[0], 2) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2) * ipow(P1[1], (param[4]-2));
+        m = (3 * param[0] * ipow(P1[0], 2) + 2 * param[1] * P1[0] + param[2]) * ModInv(2, param[4]) * ModInv(P1[1], param[4]);
     }
     else
     {
-        m = (P2[1] -P1[1]) *ipow((P2[0]-P1[0]),(param[4]-2));
+        m = (P2[1] -P1[1]) *ModInv((P2[0]-P1[0]), param[4]);
     }
     m  = MOD(m, param[4]);
 
-    q[0] = - P1[0] - P2[0] - param[1] * ipow(param[0], (param[4]-2)) + ipow(m,2) * ipow(param[0], (param[4]-2));
+    q[0] = - P1[0] - P2[0] - param[1] * ModInv(param[0], param[4]) + ipow(m,2) * ModInv(param[0], param[4]);
     q[0]  = MOD(q[0], param[4]);
 
     q[1] = - P1[1] + m * (P1[0] - q[0]);
@@ -130,11 +161,11 @@ int* generate_key (int private_key, int start[2], int param[5])
 
 int main(void)
 {
-    int start[2]={1,4};
+    int start[2]={9,3};
     int private_key=5;
+
     /*int a, b, c, d, p;      /* y^2 = a x^3 + b x^2 + c x + d*/
-                            /* p staat voor priem getal*/
-    int param[5] = {1, 0, 2, 2, 11};
+    int param[5] = {1, 0, 2, 2, 37};
     int *Q;
 
     print_all_points(param);
