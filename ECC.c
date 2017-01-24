@@ -4,9 +4,9 @@
 #define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
 
 
-int ipow(int base, int exp)                     /*source: http://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int */
+int ipow(int base, int exp, int m)                     /*source: http://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int */
 {
-    int result = 1;
+    /*int result = 1;
     while (exp)
     {
         if (exp & 1)
@@ -15,12 +15,27 @@ int ipow(int base, int exp)                     /*source: http://stackoverflow.c
         base *= base;
     }
 
+    return result;*/
+   int i, result = 1;
+
+   for(i=0 ; i < exp ; i++)
+   {
+       result = MOD(result*base, m);
+   }
+
     return result;
+
+
+
+
+
+
+
 }
 
 int on_curve(int p[2], int param[5])
 {
-    if (MOD(ipow(p[1], 2), param[4]) == MOD(param[0]*ipow(p[0], 3) + param[1]*ipow(p[0], 2) + param[2]*p[0] + param[3], param[4])) return 1;
+    if (MOD(ipow(p[1], 2, param[4]), param[4]) == MOD(param[0]*ipow(p[0], 3, param[4]) + param[1]*ipow(p[0], 2, param[4]) + param[2]*p[0] + param[3], param[4])) return 1;
     else return 0;
 }
 
@@ -53,17 +68,17 @@ int* ECC_addition(int P1[], int P2[], int param[])
     if (*P1 == *P2)
     {
         printf("3A\n");
-        m = (3 * param[0] * ipow(P1[0], 2) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2) * ipow(P1[1], (param[4]-2));
+        m = (3 * param[0] * ipow(P1[0], 2, param[4]) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2, param[4]) * ipow(P1[1], (param[4]-2), param[4]);
     }
     else
     {
         printf("3B\n");
-        m = (P2[1] -P1[1]) *ipow((P2[0]-P1[0]),(param[4]-2));
+        m = (P2[1] -P1[1]) *ipow((P2[0]-P1[0]),(param[4]-2), param[4]);
     }
     m  = MOD(m, param[4]);
     printf("m= %d\n", m);
 
-    q[0] = - P1[0] - P2[0] - param[1] * ipow(param[0], (param[4]-2)) + ipow(m,2) * ipow(param[0], (param[4]-2));
+    q[0] = - P1[0] - P2[0] - param[1] * ipow(param[0], (param[4]-2), param[4]) + ipow(m,2, param[4]) * ipow(param[0], (param[4]-2), param[4]);
     q[0]  = MOD(q[0], param[4]);
 
     q[1] = - P1[1] + m * (P1[0] - q[0]);
