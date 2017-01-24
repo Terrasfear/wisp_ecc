@@ -3,19 +3,22 @@
 
 #define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
 
-
-int ipow(int base, int exp, int m)                     /*source: http://stackoverflow.com/questions/101439/the-most-efficient-way-to-implement-an-integer-based-power-function-powint-int */
+int is_prime(int num)               /*http://stackoverflow.com/questions/5281779/c-how-to-test-easily-if-it-is-prime-number */
 {
-    /*int result = 1;
-    while (exp)
-    {
-        if (exp & 1)
-            result *= base;
-        exp >>= 1;
-        base *= base;
-    }
+    int i;
 
-    return result;*/
+    if (num <= 1) return 0;
+    if (num % 2 == 0 && num > 2) return 0;
+    for(i = 3; i < num / 2; i+= 2)
+    {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+int ipow(int base, int exp, int m)
+{
    int i, result = 1;
 
    for(i=0 ; i < exp ; i++)
@@ -25,12 +28,35 @@ int ipow(int base, int exp, int m)                     /*source: http://stackove
 
     return result;
 
+}
 
+int gcdExtended(int a, int b, int *x, int *y)   /*source: http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
+{
+    if (a == 0)
+    {
+        *x = 0, *y = 1;
+        return b;
+    }
+    int x1, y1;
+    int gcd = gcdExtended(b%a, a, &x1, &y1);
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+    return gcd;
+}
 
-
-
-
-
+int ModInv(int a, int m)                            /*source (edited): http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
+{
+    int x, y;
+    int g = gcdExtended(MOD(a, m), m, &x, &y);
+    if (g != 1)
+    {
+        printf("Inverse of %d doesn't exist\n", a);
+        return 0;
+    }
+    else
+    {
+        return MOD(x, m);
+    }
 }
 
 int on_curve(int p[2], int param[5])
@@ -68,17 +94,17 @@ int* ECC_addition(int P1[], int P2[], int param[])
     if (*P1 == *P2)
     {
         printf("3A\n");
-        m = (3 * param[0] * ipow(P1[0], 2, param[4]) + 2 * param[1] * P1[0] + param[2]) * ipow(2, param[4]-2, param[4]) * ipow(P1[1], (param[4]-2), param[4]);
+        m = (3 * param[0] * ipow(P1[0], 2, param[4]) + 2 * param[1] * P1[0] + param[2]) * ModInv(2, param[4]) * ModInv(P1[1], param[4]);
     }
     else
     {
         printf("3B\n");
-        m = (P2[1] -P1[1]) *ipow((P2[0]-P1[0]),(param[4]-2), param[4]);
+        m = (P2[1] -P1[1]) * ModInv((P2[0]-P1[0]), param[4]);
     }
     m  = MOD(m, param[4]);
     printf("m= %d\n", m);
 
-    q[0] = - P1[0] - P2[0] - param[1] * ipow(param[0], (param[4]-2), param[4]) + ipow(m,2, param[4]) * ipow(param[0], (param[4]-2), param[4]);
+    q[0] = - P1[0] - P2[0] - param[1] * ModInv(param[0], param[4]) + ipow(m,2, param[4]) * ModInv(param[0], param[4]);
     q[0]  = MOD(q[0], param[4]);
 
     q[1] = - P1[1] + m * (P1[0] - q[0]);
@@ -145,14 +171,53 @@ int* generate_key (int private_key, int start[2], int param[5])
     return P3;
 }
 
-int main(void)
+int man(void)
 {
-    int start[2]={1,4};
-    int private_key=5;
+    int start[2]={5, 39};
+    int private_key=6;
     /*int a, b, c, d, p;      /* y^2 = a x^3 + b x^2 + c x + d*/
                             /* p staat voor priem getal*/
-    int param[5] = {1, 0, 2, 2, 11};
+    int param[5] = {1, 0, 7, 158, 401};
     int *Q;
+
+    Q = generate_key(private_key, start, param);
+
+    printf("(%d, %d)", *Q, *(Q+1));
+
+    return 0;
+}
+
+int main(void)
+{
+    int start[2], private_key;
+    int *Q;
+    int param[5] = {1, 0, 1, 1, 1};
+
+    printf("ECC calculator for Y^2=X^3+aX=b curves on Zp envirement\n");
+    printf("Iputs\n");
+    printf("a=");
+    scanf("%d", &param[2]);
+    printf("b=");
+    scanf("%d", &param[3]);
+    printf("prime=");
+    scanf("%d", &param[4]);
+    if (is_prime(param[4]) == 0)
+    {
+        printf("\n%d is not a prime", param[4]);
+        return 1;
+    }
+    printf("give starting point (x,y)\nx=");
+    scanf("%d", &start[0]);
+    printf("y=");
+    scanf("%d", &start[1]);
+    if (on_curve(start, param) == 0)
+    {
+        printf("\n(%d, %d) is not on the curve", start[0], start[1]);
+        return 1;
+    }
+    printf("give private key: ");
+    scanf("%d", &private_key);
+
 
     Q = generate_key(private_key, start, param);
 
