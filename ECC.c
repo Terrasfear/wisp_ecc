@@ -193,13 +193,13 @@ int main(void)
     int *Q;
     int param[5] = {1, 0, 1, 1, 1};
 
-    printf("ECC calculator for Y^2=X^3+aX=b curves on Zp envirement\n");
-    printf("Iputs\n");
-    printf("a=");
+    printf("ECC calculator for Y^2=X^3+aX+b curves in Zp environment\n");
+    printf("Inputs\n");
+    printf("a = ");
     scanf("%d", &param[2]);
-    printf("b=");
+    printf("b = ");
     scanf("%d", &param[3]);
-    printf("prime=");
+    printf("prime = ");
     scanf("%d", &param[4]);
     if (is_prime(param[4]) == 0)
     {
