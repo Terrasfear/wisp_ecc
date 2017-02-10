@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
 
-int param[5], start[2];
 
+int param[5], start[2];
 
 int isPrime(int num)               /*http://stackoverflow.com/questions/5281779/c-how-to-test-easily-if-it-is-prime-number */
 {
@@ -44,10 +44,9 @@ int gcdExtended(int a, int b, int *x, int *y)   /*source: http://www.geeksforgee
     *x = y1 - (b/a) * x1;
     *y = x1;
     return gcd;
-}
-
 int ModInv(int a, int m)                            /*source (edited): http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
 {
+
     int x, y;
     int g = gcdExtended(MOD(a, m), m, &x, &y);
     if (g != 1)
@@ -63,6 +62,7 @@ int ModInv(int a, int m)                            /*source (edited): http://ww
 
 int onCurve(int p[2])
 {
+
     if (MOD(ipow(p[1], 2, param[4]), param[4]) == MOD(param[0]*ipow(p[0], 3, param[4]) + param[1]*ipow(p[0], 2, param[4]) + param[2]*p[0] + param[3], param[4])) return 1;
     else return 0;
 }
@@ -102,6 +102,7 @@ int* ECC_addition(int P1[], int P2[])
         P3[0] = P2[0];
         P3[1] = P2[1];
         P3[2] = P2[2];
+
     }
     else if(P2[2] == 1)
     {
@@ -112,10 +113,12 @@ int* ECC_addition(int P1[], int P2[])
     }
     else if (P1[0] == P2[0] && (P1[1] != P2[1] || (P1[1] == 0 && P2[1] == 0)))                              /*case two*/
     {
+
         //printf("case two\n");
         P3[0]=0;
         P3[1]=0;
         P3[2]=1;
+
     }
     else                                                                                                    /* case three*/
     {
@@ -130,6 +133,7 @@ int* ECC_addition(int P1[], int P2[])
         }
         m  = MOD(m, param[4]);
         //printf("m= %d\n", m);
+
 
         P3[0] = - P1[0] - P2[0] - param[1] * ModInv(param[0], param[4]) + ipow(m,2, param[4]) * ModInv(param[0], param[4]);
         P3[0]  = MOD(P3[0], param[4]);
@@ -209,8 +213,9 @@ int getPrivateKey(void)
     return private_key;
 }
 
-int main(void)
+int man(void)
 {
+
     int privateKey;
     int *K;
 
@@ -218,6 +223,7 @@ int main(void)
     PrintAllPoints();
     getStart();
     privateKey = getPrivateKey();
+
 
     K = ECC_multiplication(start, privateKey);
 
