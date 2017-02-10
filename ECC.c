@@ -94,7 +94,7 @@ void PrintAllPoints(void)
 int* ECC_addition(int P1[], int P2[])
 {
     int m;
-    static int P3[2];
+    static int P3[3];
 
     if (P1[2] == 1)                                                                                         /*case one*/
     {
