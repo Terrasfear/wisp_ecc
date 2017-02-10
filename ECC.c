@@ -44,6 +44,8 @@ int gcdExtended(int a, int b, int *x, int *y)   /*source: http://www.geeksforgee
     *x = y1 - (b/a) * x1;
     *y = x1;
     return gcd;
+}
+
 int ModInv(int a, int m)                            /*source (edited): http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/*/
 {
 
@@ -98,7 +100,7 @@ int* ECC_addition(int P1[], int P2[])
 
     if (P1[2] == 1)                                                                                         /*case one*/
     {
-        //printf("case one\n");
+        /*printf("case one\n");*/
         P3[0] = P2[0];
         P3[1] = P2[1];
         P3[2] = P2[2];
@@ -106,7 +108,7 @@ int* ECC_addition(int P1[], int P2[])
     }
     else if(P2[2] == 1)
     {
-        //printf("case one\n");
+        /*printf("case one\n");*/
         P3[0] = P1[0];
         P3[1] = P1[1];
         P3[2] = P1[2];
@@ -114,7 +116,7 @@ int* ECC_addition(int P1[], int P2[])
     else if (P1[0] == P2[0] && (P1[1] != P2[1] || (P1[1] == 0 && P2[1] == 0)))                              /*case two*/
     {
 
-        //printf("case two\n");
+        /*printf("case two\n");*/
         P3[0]=0;
         P3[1]=0;
         P3[2]=1;
@@ -122,7 +124,7 @@ int* ECC_addition(int P1[], int P2[])
     }
     else                                                                                                    /* case three*/
     {
-        //printf("case three\n");
+        /*printf("case three\n");*/
         if (*P1 == *P2)
         {
         m = (3 * param[0] * ipow(P1[0], 2, param[4]) + 2 * param[1] * P1[0] + param[2]) * ModInv(2, param[4]) * ModInv(P1[1], param[4]);
@@ -132,7 +134,7 @@ int* ECC_addition(int P1[], int P2[])
         m = (P2[1] -P1[1]) * ModInv((P2[0]-P1[0]), param[4]);
         }
         m  = MOD(m, param[4]);
-        //printf("m= %d\n", m);
+        /*printf("m= %d\n", m);*/
 
 
         P3[0] = - P1[0] - P2[0] - param[1] * ModInv(param[0], param[4]) + ipow(m,2, param[4]) * ModInv(param[0], param[4]);
@@ -150,7 +152,7 @@ int* ECC_multiplication(int P[], int n)
 {
     int* q;
     int Q[3];
-    Q[0] = P[0];                                                   /*NOTE: Is er een makkelijkere manier?*/
+    Q[0] = P[0];
     Q[1] = P[1];
     Q[2] = 0;
     printf("Start: (%d, %d, %d)\n", Q[0], Q[1], Q[2]);
@@ -171,7 +173,7 @@ int* ECC_multiplication(int P[], int n)
 
 void getParam(void)
 {
-    //static int param[5];
+    /*static int param[5];*/
     param[0] = 1;
     param[1] = 0;
     printf("ECC calculator for Y^2=X^3+aX+b curves in Zp environment\n");
@@ -193,7 +195,7 @@ void getParam(void)
 
 void getStart(void)
 {
-    //static int start[2];
+    /*static int start[2];*/
     printf("Input public starting point (x,y)\nx = ");
     scanf("%d", &start[0]);
     printf("y = ");
@@ -213,9 +215,8 @@ int getPrivateKey(void)
     return private_key;
 }
 
-int man(void)
+int main(void)
 {
-
     int privateKey;
     int *K;
 
