@@ -39,12 +39,12 @@ void main(void) {
   while(FOREVER){
 
 	  //Saying 'Hello!'
-	  //*wispData.readBufPtr = 0x48;
-	  //*(wispData.readBufPtr + 1) = 0x65;
-	  //*(wispData.readBufPtr + 2) = 0x6C;
-	  //*(wispData.readBufPtr + 3) = 0x6C;
-	  //*(wispData.readBufPtr + 4) = 0x6F;
-	  //*(wispData.readBufPtr + 5) = 0x21;
+	  *wispData.readBufPtr = 0x48;
+	  *(wispData.readBufPtr + 1) = 0x65;
+	  *(wispData.readBufPtr + 2) = 0x6C;
+	  *(wispData.readBufPtr + 3) = 0x6C;
+	  *(wispData.readBufPtr + 4) = 0x6F;
+	  *(wispData.readBufPtr + 5) = 0x21;
 
 	  WISP_doRFID();
   }
