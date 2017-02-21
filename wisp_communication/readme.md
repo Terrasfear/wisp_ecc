@@ -4,7 +4,7 @@ Attempt to write data to the wisp using sllurp.
 
 Current problem: When setting the abort conditions to write only when trying to write sth to the wisp, the wisp gets stuck in the do_RFID state (due to no successfull write command, most likely).
 Problem is most likely due to sllurp library not being set up properly.
-Already tried: Running the access file (from WISENT2) provided by Amjad.
+Already tried: Running another access file (from WISENT2) provided by Amjad.
 
 In this folder (only core files, rest of sllurp library and CCS is standard):
 
