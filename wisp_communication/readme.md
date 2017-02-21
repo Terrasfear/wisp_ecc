@@ -6,10 +6,15 @@ Current problem: When setting the abort conditions to write only when trying to 
 Problem is most likely due to sllurp library not being set up properly.
 
 In this folder (only core files, rest of sllurp library and CCS is standard):
+
 sllurp:
+
   -sllurp/access file (edited to send test words: see access(proto) -> writeSpecParam -> WriteData)
+  
   -bin/access file
+  
 WISP:
+
   -CCS file:
     This code first waits for a write command and stores the data from wispData.writeBufPtr in non-volatile memory.
     Then, it sets up the wispData.readBufPtr and sends back to the reader. (This part works)
