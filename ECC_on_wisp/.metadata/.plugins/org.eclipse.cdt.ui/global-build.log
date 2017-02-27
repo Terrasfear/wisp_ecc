@@ -9,42 +9,6 @@ gmake: Nothing to be done for 'all'.
 **** Build of configuration Debug for project ECC_multiplication ****
 
 "X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
-'Building file: ../main.c'
-'Invoking: MSP430 Compiler'
-"X:/program files/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --abi=eabi --data_model=restricted --include_path="X:/program files/ti/ccsv6/ccs_base/msp430/include" --include_path="X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base" --include_path="X:/program files/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power="all" --advice:hw_config="1" -g --define=__MSP430FR5969__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-"../main.c", line 68: remark #1535-D: (ULP 8.1) variable "bwr_array" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
-"../main.c", line 97: remark #1535-D: (ULP 8.1) variable "param" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
-"../main.c", line 98: remark #1535-D: (ULP 8.1) variable "start" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
-"../main.c", line 99: remark #1535-D: (ULP 8.1) variable "key" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
-'Finished building: ../main.c'
-' '
-'Building target: ECC_multiplication.out'
-'Invoking: MSP430 Linker'
-"X:/program files/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --abi=eabi --data_model=restricted --advice:power="all" --advice:hw_config="1" -g --define=__MSP430FR5969__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"ECC_multiplication.map" --heap_size=160 --stack_size=160 --use_hw_mpy=F5 --cinit_hold_wdt=on -i"X:/program files/ti/ccsv6/ccs_base/msp430/include" -i"X:/program files/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"X:/program files/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" -i"X:/program files/ti/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"X:/program files/ti/ccsv6/ccs_base/msp430/lib/FR59xx" --reread_libs --priority --warn_sections --display_error_number --diag_wrap=off --xml_link_info="ECC_multiplication_linkInfo.xml" --rom_model -o "ECC_multiplication.out" "./ECC.obj" "./catchall.obj" "./isr-link.obj" "./main.obj" "../lnk_msp430fr5969.cmd"  -llibc.a -l"X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/build/wisp-base.lib" -llibmath.a 
-<Linking>
-remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
-'Finished building target: ECC_multiplication.out'
-' '
-
-**** Build Finished ****
-
-**** Build of configuration build for project wisp-base ****
-
-"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
-gmake: Nothing to be done for 'all'.
-
-**** Build Finished ****
-
-**** Build of configuration build for project wisp-base ****
-
-"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
-gmake: Nothing to be done for 'all'.
-
-**** Build Finished ****
-
-**** Build of configuration Debug for project ECC_multiplication ****
-
-"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
 gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****

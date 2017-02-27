@@ -1825,3 +1825,59 @@ Caused by: java.lang.IllegalArgumentException:
 !ENTRY com.ti.ccstudio.debug 1 0 2017-02-10 14:05:18.674
 !MESSAGE DS_ERROR: Error connecting to the target:
 Unknown device
+!SESSION 2017-02-27 13:50:34.443 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_80
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=nl_NL
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2017-02-27 13:50:40.103
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2017-02-27 13:50:40.119
+!MESSAGE debugServerDir=X:/program files/ti/ccsv6/ccs_base/DebugServer
+
+!ENTRY org.eclipse.ui 2 0 2017-02-27 13:51:34.937
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.graph.visualization' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-02-27 13:51:35.011
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.rovsupport' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-02-27 13:51:35.025
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-02-27 13:51:35.030
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.util.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-02-27 13:51:35.065
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.uia.sessionmgr.view' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:45:58.019
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,693 sec: 1.347 declarations; 1.914 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:46:08.014
+!MESSAGE Indexed 'wisp-base' (9 sources, 33 headers) in 0,875 sec: 1.936 declarations; 2.920 references; 9 unresolved inclusions; 41 syntax errors; 178 unresolved names (3,5%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:46:56.790
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,329 sec: 1.327 declarations; 1.913 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:47:01.147
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,37 sec: 1.347 declarations; 1.914 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:47:21.362
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,339 sec: 1.347 declarations; 1.914 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-02-27 14:47:24.895
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,335 sec: 1.347 declarations; 1.914 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)

@@ -111,9 +111,10 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t param[])
     return Q;
 }
 
-void main_ecc(uint8_t param[], uint8_t start[], uint8_t privateKey)
+void main_ecc(uint8_t param[], uint8_t P[], uint8_t privateKey)
 {
     uint8_t *K;
+    uint8_t start[3] = {P[0], P[1], 0};
 
     K = ECC_multiplication(start, privateKey, param);
 
