@@ -123,27 +123,29 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t param[])
 
     while((*(uint8_t*)(0x2060)) > 1)
     {
-   		q = ECC_addition(P, Q, param);
-   		Q[0] = *q;
-   		Q[1] = *(q+1);
-   		Q[2] = *(q+2);
-
-   		if ((*(uint8_t*)(0x2052)) == 0xFF)	/* Opslaan in non-volitile*/
-		{
-   			(*(uint8_t*)(0x2004)) = Q[0];
-   			(*(uint8_t*)(0x2012)) = Q[1];
-			(*(uint8_t*)(0x2020)) = Q[2];
-			(*(uint8_t*)(0x2052)) = 0x00;
-		}
-    	else
+    	if ((*(uint8_t*)(0x2052)) == 0xFF)
     	{
-    		(*(uint8_t*)(0x2028)) = Q[0];
-    		(*(uint8_t*)(0x2036)) = Q[1];
-    		(*(uint8_t*)(0x2044)) = Q[2];
-    		(*(uint8_t*)(0x2052)) = 0xFF;
-    	}
+    		q = ECC_addition(P, Q, param);
+    		Q[0] = *q;
+    		Q[1] = *(q+1);
+    		Q[2] = *(q+2);
 
-        --(*(uint8_t*)(0x2060));						/* wat als de stroom tussen regels 136 en 146 of tussen 143 en 146 uit valt*/
+    		if ((*(uint8_t*)(0x2052)) == 0xFF)
+    				{
+    					(*(uint8_t*)(0x2004)) = Q[0];
+    					(*(uint8_t*)(0x2012)) = Q[1];
+    					(*(uint8_t*)(0x2020)) = Q[2];
+    					(*(uint8_t*)(0x2052)) = 0x00;
+    				}
+    				else
+    				{
+    					(*(uint8_t*)(0x2028)) = Q[0];
+    					(*(uint8_t*)(0x2036)) = Q[1];
+    					(*(uint8_t*)(0x2044)) = Q[2];
+    					(*(uint8_t*)(0x2052)) = 0xFF;
+    				}
+
+        --(*(uint8_t*)(0x2060));
     }
 	(*(uint8_t*)(0x1996)) = 0xFF;
     return Q;
