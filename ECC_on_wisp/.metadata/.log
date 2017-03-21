@@ -3067,3 +3067,85 @@ The release after Mars (4.5) will no longer support the deprecated usage!
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-03-07 17:49:45.894
 !MESSAGE Indexed 'wisp-base' (9 sources, 33 headers) in 0,777 sec: 1.936 declarations; 2.920 references; 9 unresolved inclusions; 41 syntax errors; 178 unresolved names (3,5%)
+!SESSION 2017-03-07 18:04:39.514 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_80
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=nl_NL
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2017-03-07 18:04:42.781
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2017-03-07 18:04:42.782
+!MESSAGE debugServerDir=X:/program files/ti/ccsv6/ccs_base/DebugServer
+
+!ENTRY org.eclipse.ui 2 0 2017-03-07 18:04:53.717
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.graph.visualization' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-07 18:04:53.727
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.rovsupport' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-07 18:04:53.733
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-07 18:04:53.735
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.util.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-07 18:04:53.753
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.uia.sessionmgr.view' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+!SESSION 2017-03-21 10:20:02.727 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_80
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=nl_NL
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2017-03-21 10:20:11.780
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2017-03-21 10:20:11.824
+!MESSAGE debugServerDir=X:/program files/ti/ccsv6/ccs_base/DebugServer
+
+!ENTRY org.eclipse.ui 2 0 2017-03-21 10:21:16.895
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.graph.visualization' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-21 10:21:16.943
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.rovsupport' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-21 10:21:16.977
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.dvt.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-21 10:21:16.985
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.util.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2017-03-21 10:21:17.025
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.ti.uia.sessionmgr.view' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-03-21 11:03:35.217
+!MESSAGE Indexed 'ECC_multiplication' (3 sources, 20 headers) in 0,787 sec: 1.347 declarations; 1.954 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-03-21 11:03:45.346
+!MESSAGE Indexed 'wisp-base' (9 sources, 33 headers) in 0,886 sec: 1.936 declarations; 2.920 references; 9 unresolved inclusions; 41 syntax errors; 178 unresolved names (3,5%)
