@@ -54,7 +54,7 @@ void my_blockWriteCallback  (void) {
  * Must call WISP_init() in the first line of main()
  * Must call WISP_doRFID() at some point to start interacting with a reader
  */
-void main(void) {
+ void main(void) {
 
   WISP_init();
 
@@ -90,13 +90,13 @@ void main(void) {
   wispData.epcBuf[11] = *((uint8_t*)INFO_WISP_TAGID); // WISP ID LSB: Pull from INFO seg
   
 
- WISP_doRFID();
+ //WISP_doRFID();
 
  wispData.epcBuf[1] = 2;
 
-  uint8_t param[5] = {1, 0, 2, 7, 13};
-  uint8_t start[2] = {3, 12};
-  uint8_t key = 1;
+  uint8_t param[5] = {1, 0, 13, 17, 127};
+  uint8_t start[2] = {10, 2};
+  uint8_t key = 2;
   main_ecc(param, start, key);
 
 
