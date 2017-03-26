@@ -1,7 +1,8 @@
 NV address (in hex)	Description
-1996 - 2003		First startup check	(0xFF if first run, 0x00 if programm was already running)
-2004 - 2027		Q save slot A
-2028 - 2051		Q save slot B
-2052 - 2059		n save slot A
-2060 - 2067		n save slot B
-2068 - 2075 		Save slot switch	(0xFF -> save A, load B; 0x00 -> save B, load A)
+
+1996 - 199D		First startup check	(0xFF if first run, 0x00 if programm was already running)
+199E - 19B5		Q save slot A
+19B6 - 19CD		Q save slot B
+19CE - 19D5		n save slot A
+19D6 - 19DD		n save slot B
+19DE - 19E5 		Save slot switch	(0xFF -> save A, load B; 0x00 -> save B, load A)
