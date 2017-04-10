@@ -13,7 +13,7 @@
 uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
 {
    uint8_t i, result = 1;
-   uint16_t iresult;
+   uint32_t iresult;
    for(i=0 ; i < exp ; i++)
    {
        iresult = result*base;
@@ -22,7 +22,7 @@ uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
 
     return result;
 }
-/*
+
 // source: http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
 uint16_t gcdExtended(uint16_t a, uint16_t b, uint16_t *x, uint16_t *y)
 {
@@ -47,11 +47,11 @@ uint16_t ModInv(uint16_t a, uint16_t m)
 
     return MOD(x, m);
 }
-*/
-uint8_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
+
+uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
 {
-    uint16_t m;
-    static uint8_t P3[3];
+    uint32_t m;
+    static uint16_t P3[3];
 
     if (P1[2] == 1)                                                                                         /*case one*/
     {
@@ -162,7 +162,10 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t param[])
 void main_ecc(uint8_t param[], uint8_t P[], uint8_t privateKey)
 {
     uint8_t *K;
-    uint8_t start[3] = {P[0], P[1], 0};
+    uint8_t i;
+    for (i=2; i<4; i++) param[i] = MOD(param[i], param[4]);
+
+    uint8_t start[3] = {MOD(P[0],param[4]), MOD(P[1],param[4]), 0};
 
     K = ECC_multiplication(start, privateKey, param);
 
