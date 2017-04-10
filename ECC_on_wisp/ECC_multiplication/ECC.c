@@ -22,7 +22,7 @@ uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
 
     return result;
 }
-
+/*
 // source: http://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
 uint16_t gcdExtended(uint16_t a, uint16_t b, uint16_t *x, uint16_t *y)
 {
@@ -47,7 +47,7 @@ uint16_t ModInv(uint16_t a, uint16_t m)
 
     return MOD(x, m);
 }
-
+*/
 uint8_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
 {
     uint16_t m;
@@ -75,7 +75,7 @@ uint8_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
     {
         if (*P1 == *P2)
         {
-        	m = (MOD(3 * param[0] * ipow(P1[0], 2, param[4]), param[4]) + MOD(2 * param[1] * P1[0] + param[2], param[4])) * MOD(ModInv(2, param[4]) * ModInv(P1[1], param[4]), param[4]);
+        	m = (MOD(3 * param[0] * ipow(P1[0], 2, param[4]), param[4]) + MOD(2 * param[1] * P1[0] + param[2], param[4])) * MOD(ipow(2, param[4]-2, param[4]) * ipow(P1[1], param[4]-2, param[4]), param[4]);
         }
         else
         {
@@ -83,6 +83,7 @@ uint8_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
         }
 
         m  = MOD(m, param[4]);
+        (*(uint8_t*)(0x19E2)) = m;
 
         P3[0] = MOD(- P1[0] - P2[0], param[4]) - MOD(param[1] * ipow(param[0], param[4]-2, param[4]), param[4]) + MOD(ipow(m,2, param[4]) * ipow(param[0], param[4]-2, param[4]), param[4]);
         P3[0] = MOD(P3[0], param[4]);
