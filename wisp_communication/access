@@ -5,4 +5,4 @@
 : ${PYTHON:=python}
 export PYTHONPATH="$(dirname $0)/..:$PYTHONPATH"
 
-exec "$PYTHON" -m sllurp.access ${1+"$@"} -n 100 -M WISP5 -T 7140 192.168.178.21 -r 2 
+exec "$PYTHON" -m sllurp.access ${1+"$@"} -n 100 -M WISP5 -T 7140 192.168.178.21

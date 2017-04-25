@@ -56,17 +56,18 @@ def access(proto):
     writeSpecParam = None
     if args.write_words:
         # get the binary data from the standard input stream
-        if sys.version_info.major < 3:
-            data = sys.stdin.read(args.write_words * 2)
-        else:
-            data = sys.stdin.buffer.read(args.write_words * 2)        # bytes
+        # if sys.version_info.major < 3:
+            # data = sys.stdin.read(args.write_words * 2)
+        # else:
+            # data = sys.stdin.buffer.read(args.write_words * 2)        # bytes
+		data = args.write_data
         writeSpecParam = {
             'OpSpecID': 0,
             'MB': args.mb,
             'WordPtr': args.word_ptr,
             'AccessPassword': args.access_password,
             'WriteDataWordCount': args.write_words,
-            'WriteData': '\x31\x39\x39\x37', #data or '\x31\x39\x39\x37'
+            'WriteData': data, #data or '\x31\x39\x39\x37'
         }
 
     return proto.startAccess(readWords=readSpecParam,
@@ -147,6 +148,8 @@ def parse_args():
 
     parser.add_argument('-l', '--logfile')
 
+	# Data write agument
+	parser.add_argument('-D', '--write_data', default='\x00')
     args = parser.parse_args()
 
 
