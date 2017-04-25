@@ -65,8 +65,8 @@ def access(proto):
             'MB': args.mb,
             'WordPtr': args.word_ptr,
             'AccessPassword': args.access_password,
-            'WriteDataWordCount': 2, #args.write_words
-            'WriteData': '\x31\x39\x39\x37',
+            'WriteDataWordCount': args.write_words,
+            'WriteData': '\x31\x39\x39\x37', #data or '\x31\x39\x39\x37'
         }
 
     return proto.startAccess(readWords=readSpecParam,
