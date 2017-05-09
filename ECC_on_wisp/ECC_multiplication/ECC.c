@@ -7,12 +7,12 @@
 
 
 #include "ECC.h"
-#define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
+#define MOD(x, p) (((x)%(p)) < 0 ? (((x)+(p))%(p)) : (((x)+(p))%(p)))
 
 
-uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
+uint16_t ipow(uint16_t base, uint16_t exp, uint16_t m)
 {
-   uint8_t i, result = 1;
+   uint16_t i, result = 1;
    uint32_t iresult;
    for(i=0 ; i < exp ; i++)
    {
@@ -48,7 +48,7 @@ uint16_t ModInv(uint16_t a, uint16_t m)
     return MOD(x, m);
 }
 
-uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
+uint16_t* ECC_addition(uint16_t P1[], uint16_t P2[], uint16_t param[])
 {
     uint32_t m;
     static uint16_t P3[3];
@@ -83,92 +83,99 @@ uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t param[])
         }
 
         m  = MOD(m, param[4]);
-        (*(uint8_t*)(0x19E2)) = m;
+        (*(uint16_t*)(0x19E2)) = m;
 
-        P3[0] = MOD(- P1[0] - P2[0], param[4]) - MOD(param[1] * ipow(param[0], param[4]-2, param[4]), param[4]) + MOD(ipow(m,2, param[4]) * ipow(param[0], param[4]-2, param[4]), param[4]);
-        P3[0] = MOD(P3[0], param[4]);
-
+        P3[0] = MOD(MOD(-P1[0],param[4]) + MOD(-P2[0], param[4]) + MOD(-param[1] * ipow(param[0], param[4]-2, param[4]), param[4]) + MOD(ipow(m,2, param[4]) * ipow(param[0], param[4]-2, param[4]), param[4]),param[4]);
+        //P3[0] = MOD(P3[0], param[4]);
+        //(*(uint16_t*)(0x19E8)) = MOD(-MOD(P1[0],param[4]) - MOD(P2[0], param[4]),param[4]);
+        //(*(uint16_t*)(0x19EA)) = param[4];
+        //(*(uint16_t*)(0x19EC)) = MOD(-5,param[4]);
+        //(*(uint16_t*)(0x19E4)) = P3[0];
         P3[1] = MOD(-P1[1], param[4]) + MOD(m * MOD((P1[0] - P3[0]), param[4]), param[4]);
         P3[1] = MOD(P3[1], param[4]);
-
+        (*(uint16_t*)(0x19E6)) = P3[1];
         P3[2] = 0;
         }
     return P3;
 }
 
-uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t param[])
+uint16_t* ECC_multiplication(uint16_t P[], uint16_t n, uint16_t param[])
 {
-    uint8_t* q;
-    uint8_t Q[3];
+    uint16_t* q;
+    uint16_t Q[3];
 
-	if ((*(uint8_t*)(0x1996)) == 0xFF)		/* Initialiseren bij eerste keer opstarten*/
+	if ((*(uint16_t*)(0x1996)) == 0xFFFF)		/* Initialiseren bij eerste keer opstarten*/
 	{
-		(*(uint8_t*)(0x199E)) = P[0];
-		(*(uint8_t*)(0x19A6)) = P[1];
-		(*(uint8_t*)(0x19AE)) = 0;
+		(*(uint16_t*)(0x199E)) = P[0];
+		(*(uint16_t*)(0x19A6)) = P[1];
+		(*(uint16_t*)(0x19AE)) = 0;
 
-		(*(uint8_t*)(0x19CE)) = n-1;
-		(*(uint8_t*)(0x19D6)) = n;
+		(*(uint16_t*)(0x19CE)) = n-1;
+		(*(uint16_t*)(0x19D6)) = n;
 
-	    (*(uint8_t*)(0x19DE)) = 0x00;
-	    (*(uint8_t*)(0x1996)) = 0x00;
+	    (*(uint16_t*)(0x19DE)) = 0x0000;
+	    (*(uint16_t*)(0x1996)) = 0x0000;
 	}
 
-	if ((*(uint8_t*)(0x19DE)) == 0x00)		/* Inladen van de Q waarden wanneer de WISP is uitgevallen*/
+	if ((*(uint16_t*)(0x19DE)) == 0x0000)		/* Inladen van de Q waarden wanneer de WISP is uitgevallen*/
 	{
-		Q[0] = (*(uint8_t*)(0x199E));
-		Q[1] = (*(uint8_t*)(0x19A6));
-		Q[2] = (*(uint8_t*)(0x19AE));
+		Q[0] = (*(uint16_t*)(0x199E));
+		Q[1] = (*(uint16_t*)(0x19A6));
+		Q[2] = (*(uint16_t*)(0x19AE));
 	}
 	else
 	{
-		Q[0] = (*(uint8_t*)(0x19B6));
-		Q[1] = (*(uint8_t*)(0x19BE));
-		Q[2] = (*(uint8_t*)(0x19C6));
+		Q[0] = (*(uint16_t*)(0x19B6));
+		Q[1] = (*(uint16_t*)(0x19BE));
+		Q[2] = (*(uint16_t*)(0x19C6));
 	}
 
-    while((*(uint8_t*)(0x19CE)) >= 1 && (*(uint8_t*)(0x19D6)) >= 1)
+    while((*(uint16_t*)(0x19CE)) >= 1 && (*(uint16_t*)(0x19D6)) >= 1)
     {
    		q = ECC_addition(P, Q, param);
    		Q[0] = *q;
    		Q[1] = *(q+1);
    		Q[2] = *(q+2);
    																/* Opslaan in non-volitile*/
-   		if ((*(uint8_t*)(0x19DE)) == 0xFF)						/* Save slot A*/
+   		if ((*(uint16_t*)(0x19DE)) == 0xFFFF)						/* Save slot A*/
 		{
-   			(*(uint8_t*)(0x199E)) = Q[0];
-   			(*(uint8_t*)(0x19A6)) = Q[1];
-			(*(uint8_t*)(0x19AE)) = Q[2];
+   			(*(uint16_t*)(0x199E)) = Q[0];
+   			(*(uint16_t*)(0x19A6)) = Q[1];
+			(*(uint16_t*)(0x19AE)) = Q[2];
 
-			(*(uint8_t*)(0x19CE)) = (*(uint8_t*)(0x19D6)) - 1;
+			(*(uint16_t*)(0x19CE)) = (*(uint16_t*)(0x19D6)) - 1;
 
-			(*(uint8_t*)(0x19DE)) = 0x00;
+			(*(uint16_t*)(0x19DE)) = 0x0000;
 		}
     	else													/* Save slot B*/
     	{
-    		(*(uint8_t*)(0x19B6)) = Q[0];
-    		(*(uint8_t*)(0x19BE)) = Q[1];
-    		(*(uint8_t*)(0x19C6)) = Q[2];
+    		(*(uint16_t*)(0x19B6)) = Q[0];
+    		(*(uint16_t*)(0x19BE)) = Q[1];
+    		(*(uint16_t*)(0x19C6)) = Q[2];
 
-    		(*(uint8_t*)(0x19D6)) = (*(uint8_t*)(0x19CE)) - 1;
+    		(*(uint16_t*)(0x19D6)) = (*(uint16_t*)(0x19CE)) - 1;
 
-    		(*(uint8_t*)(0x19DE)) = 0xFF;
+    		(*(uint16_t*)(0x19DE)) = 0xFFFF;
     	}
     }
-	(*(uint8_t*)(0x1996)) = 0xFF;
+	(*(uint16_t*)(0x1996)) = 0xFFFF;
     return Q;
 }
 
-void main_ecc(uint8_t param[], uint8_t P[], uint8_t privateKey)
+void main_ecc(uint16_t param[], uint16_t P[], uint16_t privateKey)
 {
-    uint8_t *K;
+    uint16_t *K;
     uint8_t i;
     for (i=2; i<4; i++) param[i] = MOD(param[i], param[4]);
 
-    uint8_t start[3] = {MOD(P[0],param[4]), MOD(P[1],param[4]), 0};
+    uint16_t start[3] = {MOD(P[0],param[4]), MOD(P[1],param[4]), 0};
 
     K = ECC_multiplication(start, privateKey, param);
 
-    (*(uint8_t*)(0x1980))=*K;
-    (*(uint8_t*)(0x1988))=*(K+1);
+    //if((*(uint8_t*)(0x197E))==0x00){
+    (*(uint16_t*)(0x1980))=*K;
+    (*(uint16_t*)(0x1984))=*(K+1); //}
+    //else{
+    //(*(uint16_t*)(0x1988))=*K;
+    //(*(uint16_t*)(0x198C))=*(K+1);}
 }
