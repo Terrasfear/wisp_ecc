@@ -89,23 +89,34 @@ void main(void) {
   wispData.epcBuf[10] = *((uint8_t*)INFO_WISP_TAGID+1); // WISP ID MSB: Pull from INFO seg
   wispData.epcBuf[11] = *((uint8_t*)INFO_WISP_TAGID); // WISP ID LSB: Pull from INFO seg
   
+ //Loading parameters:
+ //read public key from pc
+ //possibly read curve parameters
+ //private key should stay in-code!
+ //pcpublickey = ;
+ //WISP_doRFID();
 
- WISP_doRFID();
+  wispData.epcBuf[1] = 0x0A;
 
- wispData.epcBuf[1] = 2;
+  uint16_t param[5] = {1, 0, 7, 8, 313};
+  uint16_t start[2] = {4, 10};
+  uint16_t key = 5;
 
-  uint8_t param[5] = {1, 0, 2, 7, 13};
-  uint8_t start[2] = {3, 12};
-  uint8_t key = 1;
+  //if((*(uint8_t*)(0x197E))==0x00)
   main_ecc(param, start, key);
-
-
+  //wispData.epcBuf[1] = 0x0B;
+  //(*(uint8_t*)(0x197E)) = 0x01;
+  //main_ecc(param, pcpublickey, key)
+  //(*(uint8_t*)(0x197E)) = 0x00;
+  //wispData.epcBuf[1] = 0x0C;
   // Talk to the RFID reader.
-
   while (FOREVER) {
 
-	  *wispData.readBufPtr = (*(uint8_t*)(0x1980));
-	  *(wispData.readBufPtr + 1) = (*(uint8_t*)(0x1988));
+	  *wispData.readBufPtr = (*(uint16_t*)(0x1980));
+	  *(wispData.readBufPtr + 1) = (*(uint16_t*)(0x1984));
+	  //*(wispData.readBufPtr + 2) = (*(uint16_t*)(0x1988)); //usually kept in code as result of key exchange
+	  //*(wispData.readBufPtr + 3) = (*(uint16_t*)(0x198C)); //as above
+	  //*(wispData.readBufPtr + 2) = (*(uint16_t*)(0x1996));
 
 	  WISP_doRFID();
   }
