@@ -10,7 +10,16 @@
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 	</section>
 	<section name="com.ti.ccstudio.project.ui.internal.wizards.project.ProjectSettingsPage">
+		<item value="com.ti.ccstudio.deviceModel.TMS470.GenericARM7Device" key="CCS.TARGET"/>
+		<item value="" key="CCS.CONNECTION"/>
 		<section name="1">
+			<item value="GNU_4.9.3:Linaro" key="CCS.TOOL_VERSION"/>
+			<item value="" key="CCS.DEVICE_ENDIANNESS"/>
+			<item value="GNU" key="CCS.TOOL_CHAIN"/>
+			<item value="null" key="CCS.LINKER_COMMAND_FILE"/>
+			<item value="null" key="CCS.RUNTIME_SUPPORT_LIB"/>
+			<item value="executable" key="CCS.OUTPUT_TYPE"/>
+			<item value="" key="CCS.OUTPUT_FORMAT"/>
 		</section>
 	</section>
 </section>

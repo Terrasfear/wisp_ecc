@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="FileSystemImportWizard">
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="-1" key="dialogWidth"/>
 		<item value="-1" key="dialogHeight"/>
@@ -12,6 +14,12 @@
 		<list key="textEntries">
 		</list>
 	</section>
+	<section name="ZipFileImportWizard">
+	</section>
+	<section name="ZipFileExportWizard">
+	</section>
 	<section name="NewWizardAction">
+	</section>
+	<section name="ImportExportAction">
 	</section>
 </section>
