@@ -1,0 +1,1 @@
+"./ECC.obj" "./catchall.obj" "./isr-link.obj" "./main.obj" "../lnk_msp430fr5969.cmd" -llibc.a -l"X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/build/wisp-base.lib" -llibmath.a 

@@ -1,0 +1,8 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+USER_OBJS :=
+
+LIBS := -llibc.a -l"X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/build/wisp-base.lib" -llibmath.a
+

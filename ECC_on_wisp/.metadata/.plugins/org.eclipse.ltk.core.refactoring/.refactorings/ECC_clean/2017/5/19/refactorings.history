@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;ECC_clean/Debug__GNU&apos; to &apos;Debug&apos;" description="Rename resource &apos;Debug__GNU&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Debug__GNU" name="Debug" stamp="1494706651056" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;ECC_clean/EEC.h&apos; to &apos;ECC.h&apos;" description="Rename resource &apos;EEC.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="EEC.h" name="ECC.h" stamp="1494707046948" updateReferences="true"/>
+</session>

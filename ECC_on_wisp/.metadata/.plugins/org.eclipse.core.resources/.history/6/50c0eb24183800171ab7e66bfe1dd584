@@ -1,0 +1,53 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CMD_SRCS += \
+../lnk_msp430fr5969.cmd 
+
+ASM_SRCS += \
+../isr-link.asm 
+
+C_SRCS += \
+../ECC.c \
+../catchall.c \
+../main.c 
+
+OBJS += \
+./ECC.obj \
+./catchall.obj \
+./isr-link.obj \
+./main.obj 
+
+ASM_DEPS += \
+./isr-link.d 
+
+C_DEPS += \
+./ECC.d \
+./catchall.d \
+./main.d 
+
+C_DEPS__QUOTED += \
+"ECC.d" \
+"catchall.d" \
+"main.d" 
+
+OBJS__QUOTED += \
+"ECC.obj" \
+"catchall.obj" \
+"isr-link.obj" \
+"main.obj" 
+
+ASM_DEPS__QUOTED += \
+"isr-link.d" 
+
+C_SRCS__QUOTED += \
+"../ECC.c" \
+"../catchall.c" \
+"../main.c" 
+
+ASM_SRCS__QUOTED += \
+"../isr-link.asm" 
+
+

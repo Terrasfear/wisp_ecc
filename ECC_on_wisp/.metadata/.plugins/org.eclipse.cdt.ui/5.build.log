@@ -1,0 +1,16 @@
+
+**** Build of configuration Debug for project 5 ****
+
+"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: GNU Compiler'
+"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-gcc.exe" -c -I"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/arm-none-eabi/include" -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -MMD -MP -MF"main.d" -MT"main.o" -o"main.o"  "../main.c"
+'Finished building: ../main.c'
+' '
+'Building target: 5.out'
+'Invoking: GNU Linker'
+"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-gcc.exe" -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -Wl,-Map,"5.map" -o"5.out" "./main.o"  
+'Finished building target: 5.out'
+' '
+
+**** Build Finished ****
