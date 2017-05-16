@@ -1,0 +1,33 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+LD_SRCS += \
+../msp430fr5969.ld 
+
+C_SRCS += \
+../ECC.c \
+../main.c 
+
+OBJS += \
+./ECC.o \
+./main.o 
+
+C_DEPS += \
+./ECC.d \
+./main.d 
+
+C_DEPS__QUOTED += \
+"ECC.d" \
+"main.d" 
+
+OBJS__QUOTED += \
+"ECC.o" \
+"main.o" 
+
+C_SRCS__QUOTED += \
+"../ECC.c" \
+"../main.c" 
+
+

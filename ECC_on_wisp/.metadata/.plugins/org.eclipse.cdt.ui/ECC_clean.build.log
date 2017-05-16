@@ -1,14 +1,30 @@
 
-**** Clean-only build of configuration Debug for project ECC_clean ****
+**** Build of configuration Debug for project ECC_clean ****
 
-"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k clean 
-DEL /F  "ECC_clean.out"  "ECC_clean.hex" 
-DEL /F "ECC.d" "main.d" 
-DEL /F "ECC.o" "main.o" 
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_clean\Debug\ECC_clean.out
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_clean\Debug\ECC.d
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_clean\Debug\ECC.o
-'Finished clean'
-' '
+"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../ECC.c'
+'Invoking: GNU Compiler'
+"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-gcc.exe" -c -I"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/arm-none-eabi/include" -I"X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base" -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -MMD -MP -MF"ECC.d" -MT"ECC.o" -o"ECC.o"  "../ECC.c"
+subdir_rules.mk:7: recipe for target 'ECC.o' failed
+In file included from X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/wisp-base.h:14:0,
+                 from ../ECC.h:7,
+                 from ../ECC.c:9:
+X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/globals.h:15:20: fatal error: msp430.h: No such file or directory
+ #include <msp430.h>
+                    ^
+compilation terminated.
+gmake: *** [ECC.o] Error 1
+'Building file: ../main.c'
+'Invoking: GNU Compiler'
+"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-gcc.exe" -c -I"X:/program files/ti/ccsv6/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/arm-none-eabi/include" -I"X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base" -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -MMD -MP -MF"main.d" -MT"main.o" -o"main.o"  "../main.c"
+subdir_rules.mk:7: recipe for target 'main.o' failed
+In file included from X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/wisp-base.h:14:0,
+                 from ../main.c:10:
+X:/Documenten/school/HPB/wisp_ecc/ECC_on_wisp/wisp-base/globals.h:15:20: fatal error: msp430.h: No such file or directory
+ #include <msp430.h>
+                    ^
+compilation terminated.
+gmake: *** [main.o] Error 1
+gmake: Target 'all' not remade because of errors.
 
 **** Build Finished ****

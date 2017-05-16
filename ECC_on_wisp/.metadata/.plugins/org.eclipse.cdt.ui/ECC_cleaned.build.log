@@ -1,14 +1,7 @@
 
-**** Clean-only build of configuration Debug for project ECC_cleaned ****
+**** Build of configuration Debug for project ECC_cleaned ****
 
-"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k clean 
-DEL /F  "ECC_cleaned.out"  "ECC_cleaned.hex" 
-DEL /F "ECC.d" "main.d" 
-DEL /F "ECC.o" "main.o" 
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_cleaned\Debug\ECC_cleaned.out
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_cleaned\Debug\ECC.d
-Could Not Find X:\Documenten\school\HPB\wisp_ecc\ECC_on_wisp\ECC_cleaned\Debug\ECC.o
-'Finished clean'
-' '
+"X:\\program files\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****
