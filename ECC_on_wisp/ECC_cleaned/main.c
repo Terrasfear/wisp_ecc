@@ -94,18 +94,21 @@ void main(void) {
 
  wispData.epcBuf[1] = 2;
 
-  uint8_t param[5] = {1, 0, 2, 7, 13};
+  uint8_t a = 2;
+  uint8_t b = 7;
+  uint8_t p = 13;
   uint8_t start[2] = {3, 12};
-  uint8_t key = 1;
-  main_ecc(param, start, key);
+  uint8_t key = 5;
+  uint8_t *r;
+  r=main_ecc(a, b, p, start, key);
 
 
   // Talk to the RFID reader.
 
   while (FOREVER) {
 
-	  *wispData.readBufPtr = (*(uint8_t*)(0x1980));
-	  *(wispData.readBufPtr + 1) = (*(uint8_t*)(0x1988));
+	  *wispData.readBufPtr = *r;
+	  *(wispData.readBufPtr + 1) = *(r+1);
 
 	  WISP_doRFID();
   }
