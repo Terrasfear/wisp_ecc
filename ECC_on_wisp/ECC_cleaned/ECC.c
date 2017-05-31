@@ -108,7 +108,7 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t a, uint8_t b, uint8_
    		Q[0] = *q;
    		Q[1] = *(q+1);
    		Q[2] = *(q+2);
-   																/* Opslaan in non-volitile*/
+		
    		if (SW == 1)						/* Save slot A*/
 		{
    			QA[0] = Q[0];
@@ -119,7 +119,7 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t a, uint8_t b, uint8_
 
 			SW = 0;
 		}
-    	else													/* Save slot B*/
+    	else								/* Save slot B*/
     	{
     		QB[0] = Q[0];
     		QB[1] = Q[1];
