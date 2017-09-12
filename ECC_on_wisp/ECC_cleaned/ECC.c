@@ -9,12 +9,12 @@
 
 #include "ECC.h"
 #include "pragma.h"
-#define MOD(x, p) (((x)%(p)) < 0 ? ((x)%(p) +(p)) : ((x)%(p)))
+#define MOD(x, p) (((x)+(p))%p)
 
 
-uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
+uint16_t ipow(uint8_t base, uint8_t exp, uint8_t m)
 {
-   uint8_t i, result = 1;
+   uint16_t i, result = 1;
    uint32_t iresult;
    for(i=0 ; i < exp ; i++)
    {
@@ -25,7 +25,7 @@ uint8_t ipow(uint8_t base, uint8_t exp, uint8_t m)
     return result;
 }
 
-uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t a, uint8_t b, uint8_t p)
+uint16_t* ECC_addition(uint16_t P1[], uint16_t P2[], uint8_t a, uint8_t b, uint8_t p)
 {
     static uint16_t P3[3];
 
@@ -62,7 +62,7 @@ uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t a, uint8_t b, uint8_t
 
         P3[0] = MOD(- P1[0] - P2[0] + ipow(M,2, p),p);
 
-        P3[1] = MOD(-P1[1], p) + MOD(M * MOD((P1[0] - P3[0]), p), p);
+        P3[1] = MOD(- P1[1], p) + MOD(M * MOD((P1[0] - P3[0]), p), p);
         P3[1] = MOD(P3[1], p);
 
         P3[2] = 0;
@@ -70,10 +70,10 @@ uint16_t* ECC_addition(uint8_t P1[], uint8_t P2[], uint8_t a, uint8_t b, uint8_t
     return P3;
 }
 
-uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t a, uint8_t b, uint8_t p)
+uint16_t* ECC_multiplication(uint16_t P[], uint8_t n, uint8_t a, uint8_t b, uint8_t p)
 {
-    uint8_t* q;
-    uint8_t Q[3];
+    uint16_t* q;
+    uint16_t Q[3];
 
 
 	if (F == 1)		/* Initialiseren bij eerste keer opstarten*/
@@ -132,16 +132,17 @@ uint8_t* ECC_multiplication(uint8_t P[], uint8_t n, uint8_t a, uint8_t b, uint8_
     	}
     }
 	F = 1;
+	RESULT[0] = Q[0]; RESULT[1] = Q[1]; RESULT[2] = Q[2];
     return Q;
 }
 
-uint8_t* main_ecc(uint8_t a, uint8_t b, uint8_t p, uint8_t P[], uint8_t privateKey)
+uint16_t* main_ecc(uint8_t a, uint8_t b, uint8_t p, uint16_t P[], uint8_t privateKey)
 {
-    uint8_t *K;
+    uint16_t *K;
     a = MOD(a,p);
     b = MOD(b,p);
 
-    uint8_t start[3] = {MOD(P[0],p), MOD(P[1],p), 0};
+    uint16_t start[3] = {MOD(P[0],p), MOD(P[1],p), 0};
 
     K = ECC_multiplication(start, privateKey, a, b, p);
 
