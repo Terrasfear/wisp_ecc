@@ -94,14 +94,13 @@ void main(void) {
 
  wispData.epcBuf[1] = 2;
 
-  uint8_t a = 2;
-  uint8_t b = 7;
-  uint8_t p = 13;
-  uint16_t start[2] = {3, 12};
-  uint8_t key = 5;
+  uint8_t a = 10;
+  uint8_t b = 25;
+  uint8_t p = 251;
+  uint16_t start[2] = {15, 6};
+  uint8_t key = 64;
   uint16_t *r;
   r=main_ecc(a, b, p, start, key);
-  // Outcome 4, 12
 
   // Talk to the RFID reader.
 

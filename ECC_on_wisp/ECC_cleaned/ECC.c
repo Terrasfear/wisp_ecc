@@ -2,8 +2,7 @@
  * ECC.c
  *
  *  Created on: 10 feb. 2017
- *      Author: Casper
- *      Tested: Martijn
+ *      Authors: Casper & Martijn
  */
 
 
@@ -132,7 +131,6 @@ uint16_t* ECC_multiplication(uint16_t P[], uint8_t n, uint8_t a, uint8_t b, uint
     	}
     }
 	F = 1;
-	RESULT[0] = Q[0]; RESULT[1] = Q[1]; RESULT[2] = Q[2];
     return Q;
 }
 

@@ -32,7 +32,4 @@ extern uint8_t F = 1;
 #pragma PERSISTENT(M)
 extern uint32_t M = 0;
 
-#pragma PERSISTENT(RESULT)
-extern uint16_t RESULT[3] = {0, 0, 0};
-
 #endif /* PRAGMA_H_ */
