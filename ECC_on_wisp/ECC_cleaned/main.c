@@ -98,7 +98,7 @@ void main(void) {
   uint8_t b = 25;
   uint8_t p = 251;
   uint16_t start[2] = {15, 6};
-  uint8_t key = 64;
+  uint8_t key = 3;
   uint16_t *r;
   r=main_ecc(a, b, p, start, key);
 
